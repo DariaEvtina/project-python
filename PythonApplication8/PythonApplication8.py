@@ -6,46 +6,42 @@ from random import*
 
 
 
-mas1=[]
+
 mas2=[]
+f=open("wordsa.txt",'r',encoding="utf-8-sig")
+for l in f:
+ mas2.append(l)
+f.close()
+mas1=[]
 fail=open("wordas.txt",'r',encoding="utf-8-sig")
 for l in fail:
  mas1.append(l)
 fail.close()
-f=open("words.txt",'r',encoding="utf-8-sig")
-for l in f:
- mas2.append(l)
-fail.close()
-def list_():
-    i=0
-    for y in mas1:
-        lab=Label(tab2,text=f"{y}",font="Calibri 22",fg="ghostwhite",bg="lightslategrey",width=15)
-        lab.grid(row=i,column=0,columnspan=3)
-        i+=1
-    e=0
-    for y in mas2:
-        lab=Label(tab2,text=f"{y}",font="Calibri 22",fg="ghostwhite",bg="lightslategrey",width=15)
-        lab.grid(row=e,column=4,columnspan=3)
-        e+=1
-
+print(mas2)
 def show_list():
-    labs=list_
-    btt=Button(tab2,text="close dictionary",font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=25)
-    btt.grid(row=(len(mas1))+1,column=2)
+ i=0
+ e=0
+ for l in mas1:
+  lab1=Label(tab2,text=f"{l}",font="Calibri 11",fg="ghostwhite",bg="lightslategrey",width=15)
+  lab1.grid(row=e,column=2)
+  e+=1
+ for y in mas2:
+  lab=Label(tab2,text=f"{y}",font="Calibri 11",fg="ghostwhite",bg="lightslategrey",width=15)
+  lab.grid(row=i,column=3)
+  i+=1
+    
 def add_words():
-        t=txt_box.get(0.0,END)
-        for line in t:
-            n=line.find(",")# , - разделитель
-            mas1.append(line[0:n].strip())
-            mas2.append(line[n+1:len(line)].strip())
-        f=open("wordas.txt",'w',encoding="utf-8-sig")
-        for i in mas2:
-            f.write("\n"+i)
-        f.close()
-        f=open("words.txt",'w',encoding="utf-8-sig")
-        for i in mas1:
-            f.write("\n"+i)
-        f.close()
+ global o
+ o_=o.get()
+ n=o_.find(",")# , - разделитель
+ mas1.append(o_[0:n].strip())
+ mas2.append(o_[n+1:len(o_)].strip())
+ f=open("wordsa.txt",'a',encoding="utf-8-sig")
+ f.write(mas1[len(mas1)-1]+"\n")
+ f.close()
+ f_=open("wordas.txt",'a',encoding="utf-8-sig")
+ f_.write(mas2[len(mas2)-1]+"\n")
+ f_.close()
         #lb.configure(text="If you need to simultaneously add several words to the dictionary,\n enter the word and its translation separated by commas ','.\n(example:небо,sky)",bg="lightslategrey")
 
 def tr2():
@@ -59,41 +55,65 @@ def tr2():
  else:
    l2.configure(text="в словаре нет этого слова")
 
-def delete_(e):
-    if e in mas1:
-        lk=Label(tab3,text="correct the word:",font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=24)
-        p=Entry(tab3,font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=25)
-        lk.grid(row=3,column=0)
-        p.grid(row=3,column=1)
-        ind=mas1.index(ee)
-        mas1.pop(ind)
-        mas1.insert(ind,str(p))
-        fail=open("words.txt",'w',encoding="utf-8-sig")
-        for i in r :
-            fail.write(i+"\n")
-        fail.close()
-    elif e in mas2:
+def del_():
+    global eb
+    eb_=(eb[0,END].strip())
+    for word in mas1:
+     if word.find(eb_)==1:
+      lk=Label(tab3,text="correct the word:",font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=24)
+      p=Entry(tab3,font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=25)
+      lk.grid(row=3,column=0)
+      p.grid(row=3,column=1)
+      ind=mas1.index(eb_)
+      mas1.pop(ind)
+      mas1.insert(ind,str(p))
+      fail=open("wordsa.txt",'w',encoding="utf-8-sig")
+      for i in r :
+       fail.write(i+"\n")
+      fail.close()
+     elif word.find(eb_)!=1:
+      for word in mas2:
+       if word.find(eb_)==1:
         lk=Label(tab3,text="correct the word:",fg="ghostwhite",bg="lightslategrey",width=25)
         p=Entry(tab3,font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=25)
         lk.grid(row=3,column=0)
         p.grid(row=3,column=1)
         a=str(p)
-        ind=mas2.index(ee)
+        ind=mas2.index(eb_)
         mas2.pop(ind)
         mas2.insert(ind,a)
         fail=open("wordas.txt",'w',encoding="utf-8-sig")
         for i in mas2:
-            fail.write(i+"\n")
+         fail.write(i+"\n")
         fail.close()
-    else:
-       l=Label(tab3,text=f"{v} этого слова нет в программе",font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=25)
-       l.grid(row=2,column=2)
-#Def test():
+       else:
+        l=Label(tab3,text=" слова нет в программе",font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=25)
+        l.grid(row=3,column=2)
+     else:
+       l=Label(tab3,text=" слова нет в программе",font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=25)
+       l.grid(row=4,column=2)
+def test():
+ win1=Tk()
+ win1.geometry("300x400")
+ win1.title("TEST")
+ r=randint(0,(len(mas1)))
+ for i in range(len(mas1)):
+  labele=Label(win1,text=f"{mas2[r]}-???",font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=15)
+  r1=Radiobutton(win1,text=f"{mas1[r]}",font="Calibri 10",fg="ghostwhite",width=15,command=tested
+  labele.pack()
+  r1.pack()
+ win1.mainloop()
 #############################################################################################################################################
 
 win=Tk()
-win.geometry("750x800")
+win.geometry("990x400")
 win.title("Translator-Dictionary")
+M=Menu(win)
+win.config(menu=M)
+m1=Menu(M,tearoff=1)
+M.add_cascade(label="Menu",menu=m1)
+m1.add_command(label="test",command=test)
+
 tabs=ttk.Notebook(win)
 tabs_list=[]
 tab1=Frame(tabs)
@@ -116,21 +136,20 @@ l2.grid(row=2,column=5,columnspan=2)
 btn.grid(row=3,column=0,columnspan=5)
 btns=Button(tab2,text="show dictionary",font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=25,command=show_list)
 btns.grid(row=0,column=2)
-txt_box=scrolledtext.ScrolledText(tab3,width=90,height=10)
-txt_box.grid(row=0,column=0,columnspan=4)
+l7=Label(tab3,text="eng/rus",font="Calibri 22",fg="ghostwhite",bg="lightslategrey",width=10)
+o=Entry(tab3,font="Calibri 22",fg="ghostwhite",bg="lightslategrey",width=25)
 btn1=Button(tab3,text="Add new words in dictionary",font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=25,command=add_words)
-lb=Label(tab3,text="If you need to simultaneously add several words to the dictionary,\n enter the word and its translation separated by commas ','.\n(example:sky,небо)",font="Calibri 9",fg="ghostwhite",bg="lightslategrey",width=90)
-btn1.grid(row=1,column=0)
-lb.grid(row=1,column=1,columnspan=3)
-ind=0
-v=Label(tab3,text="enter the word you want to correct: ",font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=24)
-e=Entry(tab3,font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=24,command=delete_(str(e))
-v.grid(row=2,column=0)
-e.grid(row=2,column=1)
+vb=Label(tab3,text="enter the word you want to correct: ",font="Calibri 14",fg="ghostwhite",bg="lightslategrey",width=30)
+eb=Entry(tab3,font="Calibri 14",fg="ghostwhite",bg="lightslategrey",width=24)
+b=Button(tab3,text="delete",font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=24,command=del_)
 
-M=Menu(win)
-win.config(menu=M)
-m1=Menu(M,tearoff=1)
-M.add_cascade(label="Menu",menu=m1)m1.add_command(label="test",command=test)
+l7.grid(row=0,column=0)
+o.grid(row=0,column=1)
+btn1.grid(row=1,column=0)
+#b.grid(row=3,column=0)
+#b.grid(row=3,column=1)
+#.grid(row=3,column=2)
+
+
 
 win.mainloop()
