@@ -88,7 +88,7 @@ def delete_(e):
     else:
        l=Label(tab3,text=f"{v} этого слова нет в программе",font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=25)
        l.grid(row=2,column=2)
-
+#Def test():
 #############################################################################################################################################
 
 win=Tk()
@@ -128,5 +128,9 @@ e=Entry(tab3,font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=24,comm
 v.grid(row=2,column=0)
 e.grid(row=2,column=1)
 
+M=Menu(win)
+win.config(menu=M)
+m1=Menu(M,tearoff=1)
+M.add_cascade(label="Menu",menu=m1)m1.add_command(label="test",command=test)
 
 win.mainloop()
