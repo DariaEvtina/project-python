@@ -33,12 +33,12 @@ def show_list():
     btt=Button(tab2,text="close dictionary",font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=25)
     btt.grid(row=(len(mas1))+1,column=2)
 def add_words():
-        f=open("wordas.txt",'w',encoding="utf-8-sig")
         t=txt_box.get(0.0,END)
         for line in t:
             n=line.find(",")# , - разделитель
             mas1.append(line[0:n].strip())
             mas2.append(line[n+1:len(line)].strip())
+        f=open("wordas.txt",'w',encoding="utf-8-sig")
         for i in mas2:
             f.write("\n"+i)
         f.close()
@@ -47,7 +47,7 @@ def add_words():
             f.write("\n"+i)
         f.close()
         #lb.configure(text="If you need to simultaneously add several words to the dictionary,\n enter the word and its translation separated by commas ','.\n(example:небо,sky)",bg="lightslategrey")
-print(mas1)
+
 def tr2():
  l1_=str(l1.get())
  if l1_ in mas1:
@@ -59,9 +59,8 @@ def tr2():
  else:
    l2.configure(text="в словаре нет этого слова")
 
-def delete_():
-    ee=str(e)
-    if ee in mas1:
+def delete_(e):
+    if e in mas1:
         lk=Label(tab3,text="correct the word:",font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=24)
         p=Entry(tab3,font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=25)
         lk.grid(row=3,column=0)
@@ -73,7 +72,7 @@ def delete_():
         for i in r :
             fail.write(i+"\n")
         fail.close()
-    elif ee in mas2:
+    elif e in mas2:
         lk=Label(tab3,text="correct the word:",fg="ghostwhite",bg="lightslategrey",width=25)
         p=Entry(tab3,font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=25)
         lk.grid(row=3,column=0)
@@ -125,7 +124,7 @@ btn1.grid(row=1,column=0)
 lb.grid(row=1,column=1,columnspan=3)
 ind=0
 v=Label(tab3,text="enter the word you want to correct: ",font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=24)
-e=Entry(tab3,font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=24,command=delete_)
+e=Entry(tab3,font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=24,command=delete_(str(e))
 v.grid(row=2,column=0)
 e.grid(row=2,column=1)
 
