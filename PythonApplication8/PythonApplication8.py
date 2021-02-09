@@ -94,8 +94,8 @@ def test():
   r3.grid(row=e1,column=2)
   e+=2
   e1+=2
- name=Entry(win1,font="Calibri 14",fg="ghostwhite",bg="lightslategrey",width=24)
- name.grid(row=5,column=0)
+ name=Entry(win1,font="Calibri 14",fg="ghostwhite",bg="lightslategrey",width=15)
+ name.grid(row=10,column=0)
  win1.mainloop()
 #############################################################################################################################################
 
