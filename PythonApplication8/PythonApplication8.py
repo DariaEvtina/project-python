@@ -37,10 +37,10 @@ def add_words():
  mas1.append(o_[0:n].strip())
  mas2.append(o_[n+1:len(o_)].strip())
  f=open("wordsa.txt",'a',encoding="utf-8-sig")
- f.write(mas1[len(mas1)-1]+"\n")
+ f.write(mas2[len(mas2)-1]+"\n")
  f.close()
  f_=open("wordas.txt",'a',encoding="utf-8-sig")
- f_.write(mas2[len(mas2)-1]+"\n")
+ f_.write(mas1[len(mas1)-1]+"\n")
  f_.close()
         #lb.configure(text="If you need to simultaneously add several words to the dictionary,\n enter the word and its translation separated by commas ','.\n(example:небо,sky)",bg="lightslategrey")
 
@@ -92,16 +92,50 @@ def del_():
      else:
        l=Label(tab3,text=" слова нет в программе",font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=25)
        l.grid(row=4,column=2)
+
+def result():
+    global name
+    if name.get()!=" ":
+     fail_=open("Result.txt","a",encoding="utf-8-sig")
+     fail_.write(name+","+)
 def test():
  win1=Tk()
  win1.geometry("300x400")
  win1.title("TEST")
- r=randint(0,(len(mas1)))
- for i in range(len(mas1)):
-  labele=Label(win1,text=f"{mas2[r]}-???",font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=15)
-  r1=Radiobutton(win1,text=f"{mas1[r]}",font="Calibri 10",fg="ghostwhite",width=15,command=tested
-  labele.pack()
-  r1.pack()
+ e=0
+ e1=1
+
+ for i in range(5):
+  r=randint(0,(len(mas1)-1))
+  r_=randint(0,(len(mas1)-1))
+  r_1=randint(0,(len(mas1)-1))
+  if r_1==r_ or r_1==r:
+       r_1=randint(0,(len(mas1)-1))
+  else:
+      pass
+  random_=randint(0,2)
+  if random_==2:
+      r3=Radiobutton(win1,text=f"{mas1[r]}",font="Calibri 10",fg="ghostwhite",width=5)
+      r2=Radiobutton(win1,text=f"{mas1[r_]}",font="Calibri 10",fg="ghostwhite",width=5)
+      r1=Radiobutton(win1,text=f"{mas1[r_1]}",font="Calibri 10",fg="ghostwhite",width=5)
+  elif random_==1:
+      r3=Radiobutton(win1,text=f"{mas1[r_1]}",font="Calibri 10",fg="ghostwhite",width=5)
+      r2=Radiobutton(win1,text=f"{mas1[r]}",font="Calibri 10",fg="ghostwhite",width=5)
+      r1=Radiobutton(win1,text=f"{mas1[r_]}",font="Calibri 10",fg="ghostwhite",width=5)
+  else:
+      r3=Radiobutton(win1,text=f"{mas1[r_]}",font="Calibri 10",fg="ghostwhite",width=5)
+      r2=Radiobutton(win1,text=f"{mas1[r_1]}",font="Calibri 10",fg="ghostwhite",width=5)
+      r1=Radiobutton(win1,text=f"{mas1[r]}",font="Calibri 10",fg="ghostwhite",width=5,command=testing)
+  labele=Label(win1,text=f"{mas2[r]}-???",font="Calibri 10",fg="ghostwhite",bg="lightslategrey",width=5)
+  labele.grid(row=e,column=0)
+  r1.grid(row=e1,column=0)
+  r2.grid(row=e1,column=1)
+  r3.grid(row=e1,column=2)
+  e+=2
+  e1+=2
+ name=Entry(win1,font="Calibri 14",fg="ghostwhite",bg="lightslategrey",width=24)
+ name.grid(row=5,column=0)
+ 
  win1.mainloop()
 #############################################################################################################################################
 
