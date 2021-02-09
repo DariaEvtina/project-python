@@ -1,5 +1,8 @@
-﻿dog,собака
-human,человек
-cat,кот
-rat,крыса
-woman,женщина
+cat
+dog
+rat
+pig
+fish
+bat
+goat
+street
